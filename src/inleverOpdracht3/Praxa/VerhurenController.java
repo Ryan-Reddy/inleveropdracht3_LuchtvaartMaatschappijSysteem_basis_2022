@@ -3,6 +3,7 @@ package inleverOpdracht3.Praxa;
 import java.util.List;
 
 public class VerhurenController {
+
     public List<String> start() {
        return VerhuurProduct.geefAlle();
     }

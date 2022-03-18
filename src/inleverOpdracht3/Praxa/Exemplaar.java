@@ -1,8 +1,8 @@
 package inleverOpdracht3.Praxa;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.time.Date;
 
 public class Exemplaar {
     private String details;

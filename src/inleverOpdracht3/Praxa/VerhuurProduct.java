@@ -3,14 +3,16 @@ package inleverOpdracht3.Praxa;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VerhuurProduct {
-    private static List<VerhuurProduct> verhuurProducten;
+public class VerhuurProduct extends Product {
+    private double verhuurPrijs;
+    private double borg;
+    private static List<VerhuurProduct> alleVerhuurProducten;
     private String omschrijving;
     private List<Exemplaar> exemplaren;
 
     public static List<String> geefAlle() {
         List<String> alle = new ArrayList<>();
-        for (VerhuurProduct verhuurProduct : verhuurProducten) {
+        for (VerhuurProduct verhuurProduct : alleVerhuurProducten) {
             String omschrijving = verhuurProduct.geefOmschrijving();
             alle.add(omschrijving);
         }

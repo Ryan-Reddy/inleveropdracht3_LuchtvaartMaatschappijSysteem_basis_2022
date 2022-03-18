@@ -1,13 +1,11 @@
 package inleverOpdracht3.Praxa;
 
-import jdk.vm.ci.meta.Local;
-
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Date;
 
-public class VerhuurRegel {
-    private Period periode;
+public class VerhuurRegel extends TransactieRegel {
+    private VerhuurTransactie verhuurTransactie;
+    private Date eindDatum;
+    private final Exemplaar exemplaar;
 
 
     public Period geefPeriode(LocalDate startDate, LocalDate endDate){

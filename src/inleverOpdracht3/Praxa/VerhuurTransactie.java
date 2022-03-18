@@ -1,12 +1,8 @@
 package inleverOpdracht3.Praxa;
-import java.lang.String;
 
-import jdk.vm.ci.meta.Local;
-
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VerhuurTransactie {
     private LocalDate verhuurDatum;
@@ -23,5 +19,8 @@ public class VerhuurTransactie {
         if(o instanceof )
 
     }
-}
 
+    public VerhuurPeriode getVerhuurPeriode() {
+        return verhuurPeriode;
+    }
+}
