@@ -7,13 +7,14 @@ public class VerhuurRegel extends TransactieRegel {
     private Date eindDatum;
     private final Exemplaar exemplaar;
 
+    public VerhuurRegel(Exemplaar exemplaar, VerhuurTransactie verhuurTransactie) {
+        this.exemplaar = exemplaar;
+        exemplaar.voegVerhuurRegelToe(this);
+        this.verhuurTransactie = verhuurTransactie;
+    }
 
-    public Period geefPeriode(LocalDate startDate, LocalDate endDate){
-        for (verhuring:VerhuurTransactie) {
-
-        }
-        Period period = Period.between(startDate, endDate);
-        return period;
+    public VerhuurPeriode geefPeriode() {
+        return verhuurTransactie.getVerhuurPeriode();
     }
 }
 

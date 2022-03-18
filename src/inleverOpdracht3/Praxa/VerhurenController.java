@@ -1,5 +1,6 @@
 package inleverOpdracht3.Praxa;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class VerhurenController {
@@ -8,11 +9,14 @@ public class VerhurenController {
        return VerhuurProduct.geefAlle();
     }
 
-    public List<Exemplaar> selecteerProduct(VerhuurProduct keuze) {
+    public List<String> selecteerProduct(VerhuurProduct keuze) {
         return keuze.geefBeschikbareExemplaren();
     }
 
-    public void verhuurExemplaar() {
-//        TODO
+    public void verhuurExemplaar(Exemplaar exemplaar, VerhuurTransactie verhuurTransactie, LocalDate verhuurDatum, LocalDate inleverDatum) {
+        if (verhuurTransactie != null) {
+            verhuurTransactie = new VerhuurTransactie(verhuurDatum, inleverDatum);
+        }
+        verhuurTransactie.voegVerhuurRegelToe(exemplaar);
     }
 }

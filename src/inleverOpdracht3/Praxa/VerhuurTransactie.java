@@ -4,20 +4,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VerhuurTransactie {
-    private LocalDate verhuurDatum;
-    private LocalDate inleverDatum;
+public class VerhuurTransactie extends Transactie {
+    private List<VerhuurRegel> verhuurRegels = new ArrayList<>();
+    private VerhuurPeriode verhuurPeriode;
 
-    public String geefDatum() {
-
-      /* return String.format("verhuurDatum is %t",verhuurDatum) + String.format("name is %t",inleverDatum);*/
-      return verhuurDatum.toString() + inleverDatum.toString();
+    public VerhuurTransactie(LocalDate verhuurDatum, LocalDate inleverDatum) {
+        this.verhuurPeriode = new VerhuurPeriode(verhuurDatum, inleverDatum);
     }
 
-    @Override
-    public boolean compareTo(Object o){
-        if(o instanceof )
-
+    public void voegVerhuurRegelToe(Exemplaar exemplaar) {
+        this.verhuurRegels.add(new VerhuurRegel(exemplaar, this));
     }
 
     public VerhuurPeriode getVerhuurPeriode() {
