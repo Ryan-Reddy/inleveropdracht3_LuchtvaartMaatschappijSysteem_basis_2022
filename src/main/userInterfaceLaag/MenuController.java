@@ -34,6 +34,7 @@ public class MenuController implements Initializable {
         textArea.appendText("		6	Overzicht vluchten per vliegtuig\n");
         textArea.appendText("		7	Boek vlucht\n");
         textArea.appendText("		8	Overzicht boekingen per vlucht\n");
+
     }
 
     public void ok() {
