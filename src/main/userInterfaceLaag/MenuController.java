@@ -72,18 +72,23 @@ public class MenuController implements Initializable {
             fxmlFileNaam = "OverzichtVluchten";
             useCaseTitle = "Overzicht Vluchten";
             startUseCase(fxmlFileNaam, useCaseTitle);
+        } else if (keuzeNr == 7) {
+            fxmlFileNaam = "BoekVlucht";
+            useCaseTitle = "Boek Vlucht";
+            startUseCase(fxmlFileNaam, useCaseTitle, 608, 400);
         }
         textField.setText("");
         textField.requestFocus();
 
     }
 
-   private void startUseCase(String fxmlName, String title) {
+
+    private void startUseCase(String fxmlName, String title, int width, int height) {
         if (!fxmlName.isEmpty()) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource(fxmlName + ".fxml"));
-                Scene scene = new Scene(fxmlLoader.load(), 470, 310);
+                Scene scene = new Scene(fxmlLoader.load(), width, height);
                 Stage stage = new Stage();
                 stage.setTitle(title);
                 stage.setScene(scene);
@@ -93,6 +98,9 @@ public class MenuController implements Initializable {
             }
         }
    }
+    private void startUseCase(String fxmlName, String title) {
+        startUseCase(fxmlName, title, 470, 310);
+    }
 
 }
 

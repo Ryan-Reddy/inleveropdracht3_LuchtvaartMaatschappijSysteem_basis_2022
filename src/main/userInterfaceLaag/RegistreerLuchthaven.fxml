@@ -69,8 +69,11 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <RadioButton mnemonicParsing="false" text="Ja" />
-                        <RadioButton mnemonicParsing="false" text="Nee">
+                        <RadioButton mnemonicParsing="false" selected="true" text="Ja">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="WerkplaatsToggle" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton mnemonicParsing="false" text="Nee" toggleGroup="$WerkplaatsToggle">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
