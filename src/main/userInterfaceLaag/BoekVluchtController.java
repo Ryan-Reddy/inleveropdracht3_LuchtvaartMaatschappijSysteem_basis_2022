@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import main.domeinLaag.Luchthaven;
 import main.domeinLaag.Vliegtuig;
@@ -67,14 +68,10 @@ public class BoekVluchtController implements Initializable {
     private TableColumn<OverzichtVluchtenDataModel, String> aankomstTijdCol;
 
 
-//    private LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
-//    private VliegtuigType vliegtuigType;
-//    private Vliegtuig vliegtuig;
-//    private Fabrikant fabrikant;
+    private boolean luchtHavenVeranderdBOOL = false;
 
     private TreeMap<Integer, Vlucht> vluchtenMap;
 
-//    observable list voor table
     private ObservableList<OverzichtVluchtenDataModel> dataList;
 
     @Override
@@ -83,42 +80,12 @@ public class BoekVluchtController implements Initializable {
         vertrekpuntComboBox.setItems(FXCollections.observableList(Luchthaven.geefAlle().keySet().stream().toList()));
         aankomstpuntComboBox.setItems(FXCollections.observableList(Luchthaven.geefAlle().keySet().stream().toList()));
 
+
         vliegtuigCol.setCellValueFactory(new PropertyValueFactory<OverzichtVluchtenDataModel, String>("vliegtuigNm"));
-//        vertrekpuntCol.setCellValueFactory(new PropertyValueFactory<OverzichtVluchtenDataModel, String>("vertrekpunt"));
-//        bestemmingCol.setCellValueFactory(new PropertyValueFactory<OverzichtVluchtenDataModel, String>("bestemming"));
         vertrekTijdCol.setCellValueFactory(new PropertyValueFactory<OverzichtVluchtenDataModel, String>("vertrekTijd"));
         aankomstTijdCol.setCellValueFactory(new PropertyValueFactory<OverzichtVluchtenDataModel, String>("aankomstTijd"));
         tableView.setItems(dataList);
 
-
-//        vluchtenMap = Vlucht.geefAlle();
-//        fabrikantenMap = Fabrikant.geefAlle();
-//        vliegtuig = new Vliegtuig(lvm);
-//
-//
-//        /** Update de UI: Toon de fabrikanten in de fabrikantComboBox
-//         * Toon eerst een leeg, zodat de gebruiker een waarde moet
-//         * selecteren, wat de event triggered. */
-//        String leeg = "";
-//        fabrikantComboBox.getItems().add(leeg);
-//        // Creëer een gesorteerde Set namen en voeg ze toe aan fabrikantComboBox.
-//        Set<String> fabrikantenSet = fabrikantenMap.keySet();
-//        for (String fabrikant : fabrikantenSet) {
-//            fabrikantComboBox.getItems().add(fabrikant);
-//        }
-//        // Voeg event listener toe aan naamTextField. Roep naam() als focus-lost event optreedt.
-//        naamTextField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Boolean> focusProperty, Boolean oldValue, Boolean newValue) {
-//                if (!newValue) // if (focus lost)
-//                    naam();
-//            }
-//        });
-//        /*
-//        Een nieuwe, kortere manier om bovenstaande te doen is met een lambda:
-//        naamTextField.focusedProperty().addListener((obs, oldValue, newValue) -> {
-//            if(!newValue) naam();});
-//        */
 
     }
 
@@ -127,6 +94,7 @@ public class BoekVluchtController implements Initializable {
         String gekozenVertrekPunt = vertrekpuntComboBox.getValue();
         String gekozenAankomstPunt = aankomstpuntComboBox.getValue();
         if (vertrekpuntComboBox.getValue() != null && aankomstpuntComboBox.getValue() != null) {
+            luchtHavenVeranderdBOOL = true;
             System.out.println("hi v2");
             Luchthaven vertrekPunt = Luchthaven.geefAlle().get(gekozenVertrekPunt);
             Luchthaven aankomstPunt = Luchthaven.geefAlle().get(gekozenAankomstPunt);
@@ -152,90 +120,20 @@ public class BoekVluchtController implements Initializable {
         }
     }
 
-    public void fabrikant() {
-//        String fabrikantNaam = (String) fabrikantComboBox.getValue();
-//        if (fabrikantNaam != null) {
-//            //Zoek het fabrikant-object op basis van de naam en onthoud het geselecteerde fabrikant
-//            this.fabrikant = fabrikantenMap.get(fabrikantNaam);
-//            if (fabrikant != null) {
-//                vliegtuigTypenMap = fabrikant.geefVliegtuigTypen();
-//                // Update de UI
-//                // Toon de vliegtuigtypes van deze fabrikant in de combo box; begin met een leeg veld
-//                String leeg = "";
-//                typeCombobox.getItems().clear();
-//                typeCombobox.getItems().add(leeg);
-//                Set<String> vliegtuigTypenSet = vliegtuigTypenMap.keySet();
-//                for (String vliegtuigtypeNaam : vliegtuigTypenSet) {
-//                    typeCombobox.getItems().add(vliegtuigtypeNaam);
-//                }
-//                // Toon de contactpersoon van de fabrikant
-//                String cp = this.fabrikant.geefContactpersoon();
-//                contactTextfield.setText(cp);
-//            } else {
-//                contactTextfield.setText("");
-//                typeCombobox.getItems().clear();
-//                capaciteitTextField.setText("");
-//                vliegtuig.zetVliegtuigType(null);
-//            }
-//        }
-    }
-
-    public void type() {
-//        String vttCode = (String) typeCombobox.getValue();
-//        //Zoek het vliegtuigtype-object, op basis van de code.
-//        if (vttCode != null) {
-//            this.vliegtuigType = vliegtuigTypenMap.get(vttCode);
-//            if (vliegtuigType != null) {
-//                vliegtuig.zetVliegtuigType(vliegtuigType);
-//                // Update de UI: Toon de capaciteit
-//                int cap = this.vliegtuigType.geefCapaciteit();
-//                capaciteitTextField.setText(String.valueOf(cap));
-//            } else {
-//                vliegtuig.zetVliegtuigType(null);
-//                capaciteitTextField.setText("");
-//            }
-//        }
-    }
-
-    public void naam() {
-//        naamTextField.setStyle("-fx-text-fill: black;");
-//        String naam = naamTextField.getText();
-//        if (naam != null && !naam.isEmpty()) {
-//            try {
-//                vliegtuig.zetNaam(naam);
-//            } catch (IllegalArgumentException ei) {
-//                toonMelding(ei.getMessage());
-//                naamTextField.setStyle("-fx-text-fill: red;");
-//            }
-//        } else {
-//            vliegtuig.zetNaam(null);
-//            naamTextField.setText("");
-//        }
-    }
-
-    public void inGebruik() {
-//        LocalDate inGebruik = InGebruikDatePicker.getValue();
-//        if (inGebruik != null) {
-//            Calendar calendar = Calendar.getInstance();
-//            calendar.clear();
-//            calendar.set(inGebruik.getYear(), inGebruik.getMonthValue() - 1, inGebruik.getDayOfMonth());
-//            try {
-//                vliegtuig.zetInGebruik(calendar);
-//            } catch (IllegalArgumentException ei) {
-//                toonMelding(ei.getMessage());
-//            }
-//        }
-    }
 
     public void bevestig() {
-        System.out.println("Beeld je in dat de boeking wordt opgeslagen...");
-//        try {
-//            vliegtuig.bewaar();
-//            Stage stage = (Stage) buttonOK.getScene().getWindow();
-//            stage.close();
-//        } catch (IllegalStateException ei) {
-//            toonMelding(ei.getMessage());
-//        }
+        String tekstMessage = "Checking bevestigen...";
+        String title = "Bevestiging ontvangen.";
+        errorLabel.setText(tekstMessage);
+        if (luchtHavenVeranderdBOOL == true) {
+            tekstMessage = "Beeld je in dat de boeking wordt opgeslagen...";
+            errorLabel.setTextFill(Paint.valueOf("BLACK"));
+            errorLabel.setText(tekstMessage);
+            toonMelding(tekstMessage, title);
+        } else {
+            tekstMessage = "Gelieve een vertrek- en aankomstlocatie aan te geven..";
+            errorLabel.setText(tekstMessage);
+        }
     }
 
     public void annuleren() {
@@ -243,10 +141,10 @@ public class BoekVluchtController implements Initializable {
         stage.close();
     }
 
-    private void toonMelding(String tekstMessage) {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Waarschuwing!");
-//        alert.setContentText(tekstMessage);
-//        alert.showAndWait();
+    private void toonMelding(String tekstMessage, String title) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(tekstMessage);
+        alert.showAndWait();
     }
 }

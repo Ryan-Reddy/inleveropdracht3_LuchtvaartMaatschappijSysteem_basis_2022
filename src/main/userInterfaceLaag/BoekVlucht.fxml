@@ -156,7 +156,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Vertrekpunt" />
-                  <ComboBox fx:id="vertrekpuntComboBox" onAction="#luchthavensVeranderd" prefWidth="150.0" promptText="Bonn">
+                  <ComboBox fx:id="vertrekpuntComboBox" onAction="#luchthavensVeranderd" prefWidth="150.0" promptText="...">
                      <VBox.margin>
                         <Insets top="8.0" />
                      </VBox.margin>
@@ -166,7 +166,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Aankomstpunt" />
-                  <ComboBox fx:id="aankomstpuntComboBox" onAction="#luchthavensVeranderd" prefWidth="150.0" promptText="Bonn">
+                  <ComboBox fx:id="aankomstpuntComboBox" onAction="#luchthavensVeranderd" prefWidth="150.0" promptText="...">
                      <VBox.margin>
                         <Insets top="8.0" />
                      </VBox.margin>
