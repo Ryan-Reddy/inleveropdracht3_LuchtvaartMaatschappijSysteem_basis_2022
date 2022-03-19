@@ -99,39 +99,50 @@ public class VluchtTest {
      * Zo niet: leg de vertrektijd en/of aankomsttijd niet vast (en geef een melding).
      */
 
+    @Test
+    public void testVertrekTijdOngeldig() {
+        Calendar vertr = Calendar.getInstance();
+        vertr.set(204454, 70, 300, 14, 15, 0);
+        Calendar aank = Calendar.getInstance();
+        aank.set(2020, 6, 30, 15, 15, 0);
+
+        assertThrows(VluchtException.class, () -> new Vlucht(vt1, lh1, lh2, vertr, aank));
+    }
 
     @Test
-    public void testVertrekEnAankomst_True() {
+    public void testAankomstTijdOngeldig() {
         Calendar vertr = Calendar.getInstance();
+        vertr.set(2023, 9, 21, 14, 15, 0);
         Calendar aank = Calendar.getInstance();
+        aank.set(204454, 70, 300, 15, 15, 0);
 
-        vertr.set(2020, 03, 30, 14, 15, 0);
-
-        aank.set(2020, 03, 30, 15, 15, 0);
-
-        Vlucht vl3 = new Vlucht(vt1, lh1, lh2, vertr, aank);
-        System.out.println(vl1);
-        System.out.println(vl3);
-        assertTrue(vl3.equals("2"));
-//		TODO
+        assertThrows(VluchtException.class, () -> new Vlucht(vt1, lh1, lh2, vertr, aank));
     }
 
     @Test
     public void testVertrekJaarInVerleden_False() {
         Calendar vertr = Calendar.getInstance();
         Calendar aank = Calendar.getInstance();
-
         vertr.set(1913, 03, 30, 15, 15, 0);
-
         aank.set(2020, 03, 30, 15, 15, 0);
 
-        Vlucht vl3 = new Vlucht(vt1, lh1, lh2, vertr, aank);
-//		assertFalse();
-//		TODO
+        assertThrows(
+                VluchtException.class,
+                () -> new Vlucht(vt1, lh1, lh2, vertr, aank)
+        );
     }
 
     @Test
-    public void testAankomstJaarInVerleden_False() {
+    public void testAankomstJaarInVerleden() {
+        Calendar vertr = Calendar.getInstance();
+        Calendar aank = Calendar.getInstance();
+        vertr.set(2023, 03, 30, 15, 15, 0);
+        aank.set(1991, 03, 30, 15, 15, 0);
+
+        assertThrows(
+                VluchtException.class,
+                () -> new Vlucht(vt1, lh1, lh2, vertr, aank)
+        );
 
 //		TODO
     }
@@ -157,10 +168,7 @@ public class VluchtTest {
     }
 
 
-    @Test
-    public void testVertrektijdGeldig() {
-//		TODO
-    }
+
 
 
     /**
@@ -169,6 +177,13 @@ public class VluchtTest {
      * Zo niet: leg de aankomsttijd niet vast (en geef een melding).
      */
 
+    @Test
+    public void testAankomstNietTijdNaVertrektijd_FALSE() {
+       double one = 1.0;
+       int two = 2;
+       assertEquals(one, two);
+
+    }
 
     /**
      * Business rule:
@@ -176,12 +191,45 @@ public class VluchtTest {
      * Zo niet: leg de vertrektijd en/of aankomsttijd niet vast (en geef een melding).
      */
 
+    @Test
+    public void testVliegtuigInGebruik() {
+
+        Calendar vertr = Calendar.getInstance();
+        Calendar aank = Calendar.getInstance();
+        vertr.set(2020, 4, 1, 8, 15, 0);
+        aank.set(2020, 4, 1, 9, 15, 0);
+        Vlucht vlTest1 = new Vlucht(vt1, lh1, lh2, vertr, aank);
+
+//        TODO FAILED plane cannot be double use, but system allows it
+        assertThrows(VluchtException.class, () -> new Vlucht(vt1, lh1, lh2, vertr, aank));
+    }
 
     /**
      * Business rule:
      * 5)	Een vlucht mag alleen geaccepteerd worden als de volgende gegevens zijn vastgelegd: vliegtuig, vertrekpunt, bestemming, vertrektijd, aankomsttijd.
      * Zo niet: bewaar de vlucht niet (en geef een melding).
      */
+    @Test
+    public void testAlleGegevensIngevuldVlucht_true() {
+        Calendar vertr = Calendar.getInstance();
+        vertr.set(2020, 03, 30, 14, 15, 0);
+        Calendar aank = Calendar.getInstance();
+        aank.set(2020, 03, 30, 15, 15, 0);
 
+        assertThrows(VluchtException.class, () -> new Vlucht(vt1, lh1, lh2, vertr, null));
+        assertThrows(VluchtException.class, () -> new Vlucht(vt1, lh1, lh2, null, aank));
+        assertThrows(VluchtException.class, () -> new Vlucht(vt1, lh1, null, vertr, aank));
+        assertThrows(VluchtException.class, () -> new Vlucht(vt1, null, lh2, vertr, aank));
+        assertThrows(VluchtException.class, () -> new Vlucht(null, lh1, lh2, vertr, aank));
+    }
 
+    @Test
+    public void testAlleGegevensIngevuldVlucht_false() {
+        Calendar vertr = Calendar.getInstance();
+        vertr.set(2020, 03, 30, 14, 15, 0);
+        Calendar aank = Calendar.getInstance();
+        aank.set(2020, 03, 30, 15, 15, 0);
+
+        assertDoesNotThrow(() -> new Vlucht(vt1, lh1, lh2, vertr, aank));
+    }
 }

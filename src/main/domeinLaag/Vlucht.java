@@ -1,7 +1,7 @@
 package main.domeinLaag;
 import java.util.*;
 
-public class Vlucht 
+public class Vlucht
 {
    private static HashSet<Vlucht> alleVluchten = new HashSet<Vlucht>();
    private static int hoogsteVluchtNummer = 1;
@@ -12,8 +12,8 @@ public class Vlucht
    private Calendar vertrekTijd;
    private Calendar aankomstTijd;
    private Calendar duur;
-   
-   
+
+
    public static TreeMap<Integer, Vlucht> geefAlle() {
 	   TreeMap<Integer, Vlucht> alleVluchten = new TreeMap<Integer, Vlucht>();
 	   for (Vlucht vlucht : Vlucht.alleVluchten) {
@@ -37,9 +37,9 @@ public class Vlucht
 	   return b;
    }
 
-   
+
    public Vlucht() {
-	   zetVluchtNummer(); 
+	   zetVluchtNummer();
    }
    
    public Vlucht(Vliegtuig vt, Luchthaven vertrekp, Luchthaven best, Calendar vertrek, Calendar aankomst) {
@@ -163,7 +163,7 @@ public class Vlucht
 		hoogsteVluchtNummer ++;
 	}
 
-	private int getVluchtNummer() {
+	public int getVluchtNummer() {
    		return vluchtNummer;
 	}
 	
