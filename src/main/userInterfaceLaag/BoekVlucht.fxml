@@ -14,27 +14,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.userInterfaceLaag.BoekVluchtController">
    <children>
-      <TableView layoutX="23.0" layoutY="108.0" prefHeight="122.0" prefWidth="307.0">
+      <TableView fx:id="tableView" layoutX="23.0" layoutY="108.0" prefHeight="122.0" prefWidth="307.0">
         <columns>
-          <TableColumn prefWidth="94.0" text="Vliegnummer" />
-          <TableColumn prefWidth="85.0" text="Vertrektijd" />
-            <TableColumn prefWidth="88.0" text="Aankomsttijd" />
+          <TableColumn fx:id="vliegtuigCol" prefWidth="94.0" text="Vliegnummer" />
+          <TableColumn fx:id="vertrekTijdCol" prefWidth="85.0" text="Vertrektijd" />
+            <TableColumn fx:id="aankomstTijdCol" prefWidth="88.0" text="Aankomsttijd" />
             <TableColumn prefWidth="65.0" text="Duur" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="23.0" layoutY="321.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Bevestigen" />
-      <Button layoutX="185.0" layoutY="321.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Annuleren" />
-      <Label layoutX="224.0" layoutY="378.0" text="Status: Error - u bent een badeend" textFill="RED" />
+      <Button fx:id="bevestigButton" layoutX="23.0" layoutY="321.0" mnemonicParsing="false" onAction="#bevestig" prefHeight="25.0" prefWidth="100.0" text="Bevestigen" />
+      <Button fx:id="annulerenButton" layoutX="185.0" layoutY="321.0" mnemonicParsing="false" onAction="#annuleren" prefHeight="25.0" prefWidth="100.0" text="Annuleren" />
       <VBox layoutX="378.0" layoutY="23.0" prefHeight="170.0" prefWidth="179.0">
          <children>
             <Label text="Kies een Datum" />
-            <DatePicker prefHeight="25.0" prefWidth="200.0">
+            <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
@@ -44,12 +42,12 @@
                   <Insets top="8.0" />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="-Infinity" prefHeight="25.0" prefWidth="237.0" promptText="00:00">
+            <TextField fx:id="tijdTextField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="237.0" promptText="00:00">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="246.0" text="Selecteer" />
+            <Button fx:id="selecteerDatumTijdButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="246.0" text="Selecteer" />
          </children>
       </VBox>
       <Pane layoutX="351.0" layoutY="230.0">
@@ -94,23 +92,23 @@
                   </VBox>
                   <VBox prefHeight="157.0" prefWidth="79.0">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="55.0" />
-                        <TextField prefHeight="25.0" prefWidth="55.0">
+                        <TextField fx:id="voornaamTextField" prefHeight="25.0" prefWidth="55.0" />
+                        <TextField fx:id="achternaamTextField" prefHeight="25.0" prefWidth="55.0">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField prefHeight="25.0" prefWidth="55.0">
+                        <TextField fx:id="straatTextField" prefHeight="25.0" prefWidth="55.0">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField prefHeight="25.0" prefWidth="55.0" promptText="1111XX">
+                        <TextField fx:id="postcodeTextField" prefHeight="25.0" prefWidth="55.0" promptText="1111XX">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField prefHeight="25.0" prefWidth="55.0">
+                        <TextField fx:id="woonplaatsTextField" prefHeight="25.0" prefWidth="55.0">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
@@ -119,9 +117,9 @@
                   </VBox>
                   <VBox prefHeight="100.0" prefWidth="67.0">
                      <children>
-                        <TextField maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" promptText="#">
+                        <TextField fx:id="huisnummerTextField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" promptText="#">
                            <VBox.margin>
-                              <Insets left="10.0" top="50.0" />
+                              <Insets left="10.0" top="60.0" />
                            </VBox.margin>
                         </TextField>
                      </children>
@@ -139,13 +137,13 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Stoelen" />
-                  <ComboBox prefWidth="150.0" />
+                  <ComboBox fx:id="stoelenComboBox" prefWidth="150.0" promptText="4" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Klasse" />
-                  <ComboBox prefWidth="150.0" />
+                  <ComboBox fx:id="klasseComboBox" prefWidth="150.0" promptText="1e" />
                </children>
                <HBox.margin>
                   <Insets left="60.0" />
@@ -158,7 +156,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Vertrekpunt" />
-                  <ComboBox prefWidth="150.0">
+                  <ComboBox fx:id="vertrekpuntComboBox" onAction="#luchthavensVeranderd" prefWidth="150.0" promptText="Bonn">
                      <VBox.margin>
                         <Insets top="8.0" />
                      </VBox.margin>
@@ -168,7 +166,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Aankomstpunt" />
-                  <ComboBox prefWidth="150.0">
+                  <ComboBox fx:id="aankomstpuntComboBox" onAction="#luchthavensVeranderd" prefWidth="150.0" promptText="Bonn">
                      <VBox.margin>
                         <Insets top="8.0" />
                      </VBox.margin>
@@ -180,5 +178,10 @@
             </VBox>
          </children>
       </HBox>
+      <VBox alignment="CENTER" layoutY="374.0" prefHeight="25.0" prefWidth="608.0">
+         <children>
+            <Label fx:id="errorLabel" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" text="Status: Error - client error response: 418 I'm a teapot. " textAlignment="CENTER" textFill="RED" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
