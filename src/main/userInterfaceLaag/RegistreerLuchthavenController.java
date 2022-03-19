@@ -40,6 +40,8 @@ public class RegistreerLuchthavenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+                       n
 /**     Activeer na het maken van het scherm
         alleLanden = Land.geefAlleLanden();
         nieuweLuchthaven = new Luchthaven();
