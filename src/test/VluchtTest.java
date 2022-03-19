@@ -1,20 +1,13 @@
 package test;
 
-import main.domeinLaag.Fabrikant;
-import main.domeinLaag.Land;
-import main.domeinLaag.Luchthaven;
-import main.domeinLaag.LuchtvaartMaatschappij;
-import main.domeinLaag.Vliegtuig;
-import main.domeinLaag.VliegtuigType;
-import main.domeinLaag.Vlucht;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import main.domeinLaag.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class VluchtTest {
 
@@ -64,14 +57,14 @@ public class VluchtTest {
             vlucht.zetVliegtuig(vt1);
             vlucht.zetVertrekpunt(lh1);
             Luchthaven bestemming = vlucht.getBestemming();
-            assertTrue(bestemming == null);
+            assertNull(bestemming);
             vlucht.zetBestemming(lh1);
             // De test zou niet verder mogen komen: er moet al een exception gethrowd zijn.
             bestemming = vlucht.getBestemming();
-            assertFalse(bestemming.equals(lh1));
+            assertNotEquals(bestemming, lh1);
         } catch (IllegalArgumentException e) {
             Luchthaven bestemming = vlucht.getBestemming();
-            assertFalse(bestemming.equals(lh1));
+            assertNotEquals(bestemming, lh1);
         }
     }
 
@@ -83,13 +76,13 @@ public class VluchtTest {
             vlucht.zetVliegtuig(vt1);
             vlucht.zetVertrekpunt(lh2);
             bestemming = vlucht.getBestemming();
-            assertTrue(bestemming == null);
+            assertNull(bestemming);
             vlucht.zetBestemming(lh1);
             bestemming = vlucht.getBestemming();
-            assertTrue(bestemming.equals(lh1));
+            assertEquals(bestemming, lh1);
         } catch (IllegalArgumentException e) {
             bestemming = vlucht.getBestemming();
-            assertTrue(bestemming.equals(lh1));
+            assertEquals(bestemming, lh1);
         }
     }
 
@@ -120,7 +113,7 @@ public class VluchtTest {
     }
 
     @Test
-    public void testVertrekJaarInVerleden_False() {
+    public void testVertrekJaarInVerleden() {
         Calendar vertr = Calendar.getInstance();
         Calendar aank = Calendar.getInstance();
         vertr.set(1913, 03, 30, 15, 15, 0);

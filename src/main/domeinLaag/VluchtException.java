@@ -1,6 +1,6 @@
 package main.domeinLaag;
 
-public class VluchtException extends Exception {
+public class VluchtException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 

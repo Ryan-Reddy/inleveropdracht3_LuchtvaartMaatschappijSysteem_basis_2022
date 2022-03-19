@@ -27,12 +27,11 @@ public class Vlucht
     * @return True, als vliegtuig bezet. Anders false. */
    private static boolean isBezet(Vliegtuig vliegtuig, Calendar d) {
 	   boolean b = false;
-	   for (Iterator<Vlucht> i=alleVluchten.iterator(); i.hasNext();) {
-	   		Vlucht v = (Vlucht) i.next();
-			if (v.vliegtuig.equals(vliegtuig)) {
-				if (v.getVertrekTijd().before(d) && v.getAankomstTijd().after(d) )
-				b = true;
-			}
+	   for (Vlucht v : alleVluchten) {
+		   if (v.vliegtuig.equals(vliegtuig)) {
+			   if (v.getVertrekTijd().before(d) && v.getAankomstTijd().after(d))
+				   b = true;
+		   }
 	   }
 	   return b;
    }
@@ -41,15 +40,49 @@ public class Vlucht
    public Vlucht() {
 	   zetVluchtNummer();
    }
-   
-   public Vlucht(Vliegtuig vt, Luchthaven vertrekp, Luchthaven best, Calendar vertrek, Calendar aankomst) {
+
+   public Vlucht(Vliegtuig vt, Luchthaven vertrekp, Luchthaven best, Calendar vertrekTijd, Calendar aankomstTijd) {
+	   if (vt != null && vertrekp != null && best != null && vertrekTijd != null && aankomstTijd != null){
+
+	   Calendar aTijd = vertrekTijd;
+	   Calendar vTijd = aankomstTijd;
+	   aTijd.setLenient(false);
+	   vTijd.setLenient(false);
+	   // Ter controle of het een juiste datum is. Gebeurt niet bij het zetten, maar bij het getten.
+	   try {
+		   @SuppressWarnings("unused")
+		   Date adatum = aTijd.getTime();
+		   Date vdatum = vTijd.getTime();
+	   } catch (IllegalArgumentException e) {
+		   throw new VluchtException("Geen geldig tijdstip!");
+	   }
+
+
+
+/*
+	   if aankomstTijd.before(Calendar.getInstance()){
+		   throw new VluchtException("Aankomsttijd ligt in het verleden");
+	   }
+	   if (aankomstTijd.before(getVertrekTijd())) {
+		   throw new VluchtException("Aankomsttijd ligt voor vertrektijd");
+	   }
+	   if (vertrekTijd.before(Calendar.getInstance())) {
+		   System.out.println(Calendar.getInstance());
+		   throw new VluchtException("Vertrektijd ligt in het verleden");}*/
+
+
 	   zetVluchtNummer(); 
 	   this.vliegtuig = vt;
 	   this.vertrekpunt = vertrekp;
 	   this.bestemming = best;
-	   this.vertrekTijd = (Calendar)vertrek.clone();
-	   this.aankomstTijd = (Calendar) aankomst.clone();
+	   this.vertrekTijd = (Calendar)vertrekTijd.clone();
+	   this.aankomstTijd = (Calendar) aankomstTijd.clone();
 	   alleVluchten.add(this);
+
+	   } else {
+		   throw new VluchtException("Missende gegevens voor een nieuwe vlucht.");
+	   }
+
    }
 
    public void zetVliegtuig(Vliegtuig vt) {
@@ -79,23 +112,25 @@ public class Vlucht
     * @param tijd
     */
    public void zetVertrekTijd(Calendar tijd) throws VluchtException {
-   		if (tijd == null) {
-			vertrekTijd = null;
-		} else {
-			Calendar vTijd = tijd;
-			vTijd.setLenient(false);
-			// Ter controle of het een juiste datum is. Gebeurt niet bij het zetten, maar bij het getten.
-			try {
-				@SuppressWarnings("unused")
-				Date datum = vTijd.getTime();
-			} catch (IllegalArgumentException e) {
-				throw new VluchtException("Geen geldig tijdstip!");
-			}
-			if (!Vlucht.isBezet(vliegtuig, vTijd)) {
-				vertrekTijd = (Calendar) vTijd.clone();
-			} else
-				throw new VluchtException("Vliegtuig reeds bezet op " + tijd.getTime());
-		}
+	   if (tijd == null) {
+		   vertrekTijd = null;
+	   } else {if (tijd.before(Calendar.getInstance())) {
+		   throw new VluchtException("Vertrektijd ligt in het verleden");
+	   }
+	   Calendar vTijd = tijd;
+		   vTijd.setLenient(false);
+		   // Ter controle of het een juiste datum is. Gebeurt niet bij het zetten, maar bij het getten.
+		   try {
+			   @SuppressWarnings("unused")
+			   Date datum = vTijd.getTime();
+		   } catch (IllegalArgumentException e) {
+			   throw new VluchtException("Geen geldig tijdstip!");
+		   }
+		   if (!Vlucht.isBezet(vliegtuig, vTijd)) {
+			   vertrekTijd = (Calendar) vTijd.clone();
+		   } else
+			   throw new VluchtException("Vliegtuig reeds bezet op " + tijd.getTime());
+	   }
    }
    
    public Calendar getVertrekTijd() {
