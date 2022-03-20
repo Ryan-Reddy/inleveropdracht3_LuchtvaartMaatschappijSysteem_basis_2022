@@ -56,10 +56,23 @@ public class Vlucht
 	   } catch (IllegalArgumentException e) {
 		   throw new VluchtException("Geen geldig tijdstip!");
 	   }
+// check moment vertrek < moment aankomst:
+	   if (vertrekTijd.toInstant().isBefore(aankomstTijd.toInstant())) {
+
+		   zetVluchtNummer();
+		   this.vliegtuig = vt;
+		   this.vertrekpunt = vertrekp;
+		   this.bestemming = best;
+		   this.vertrekTijd = (Calendar) vertrekTijd.clone();
+		   this.aankomstTijd = (Calendar) aankomstTijd.clone();
+		   alleVluchten.add(this);
+	   }
+	   else if (aankomstTijd.toInstant().isBefore(vertrekTijd.toInstant())) {
+		   throw new VluchtException("Aankomstdatum kan niet gebeuren voor vertrekdatum!");
+	   }
 
 
-
-/*
+	   /*
 	   if aankomstTijd.before(Calendar.getInstance()){
 		   throw new VluchtException("Aankomsttijd ligt in het verleden");
 	   }
@@ -69,15 +82,6 @@ public class Vlucht
 	   if (vertrekTijd.before(Calendar.getInstance())) {
 		   System.out.println(Calendar.getInstance());
 		   throw new VluchtException("Vertrektijd ligt in het verleden");}*/
-
-
-	   zetVluchtNummer(); 
-	   this.vliegtuig = vt;
-	   this.vertrekpunt = vertrekp;
-	   this.bestemming = best;
-	   this.vertrekTijd = (Calendar)vertrekTijd.clone();
-	   this.aankomstTijd = (Calendar) aankomstTijd.clone();
-	   alleVluchten.add(this);
 
 	   } else {
 		   throw new VluchtException("Missende gegevens voor een nieuwe vlucht.");
