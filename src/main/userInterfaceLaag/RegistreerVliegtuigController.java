@@ -33,7 +33,7 @@ public class RegistreerVliegtuigController implements Initializable {
     @FXML
     private Button buttonCancel;
 
-    private LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
+    private final LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
     private VliegtuigType vliegtuigType;
     private Vliegtuig vliegtuig;
     private Fabrikant fabrikant;

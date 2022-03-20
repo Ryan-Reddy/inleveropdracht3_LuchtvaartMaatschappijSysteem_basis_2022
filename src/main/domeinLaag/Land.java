@@ -4,11 +4,11 @@ import java.util.TreeMap;
 
 public class Land 
 {
-   private String naam;
-   private int code;
+   private final String naam;
+   private final int code;
    /** Alle luchthavens binnen het land */
-   private HashSet<Luchthaven> luchthavens;
-   private static HashSet<Land> alleLanden = new HashSet<Land>();
+   private final HashSet<Luchthaven> luchthavens;
+   private static final HashSet<Land> alleLanden = new HashSet<Land>();
    
    public Land(String nm, int cd) 
    {

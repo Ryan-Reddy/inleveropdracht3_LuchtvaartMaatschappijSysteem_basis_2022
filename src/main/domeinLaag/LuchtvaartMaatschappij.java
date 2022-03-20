@@ -4,8 +4,8 @@ import java.util.HashSet;
 
 public class LuchtvaartMaatschappij 
 {
-   private String naam;
-   private HashSet<Vliegtuig> vliegtuigen= new HashSet<Vliegtuig>();
+   private final String naam;
+   private final HashSet<Vliegtuig> vliegtuigen= new HashSet<Vliegtuig>();
 
 	public static LuchtvaartMaatschappij getCurrentLuchtvaartMaatschappij() {
 		return currentLuchtvaartMaatschappij;

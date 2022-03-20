@@ -4,10 +4,10 @@ import java.util.HashSet;
 
 public class Fabrikant 
 {
-   private String naam;
-   private String contactPersoon;
-   private static HashSet<Fabrikant> alleFabrikanten = new HashSet<Fabrikant>();
-   private HashSet<VliegtuigType> vliegtuigTypen;
+   private final String naam;
+   private final String contactPersoon;
+   private static final HashSet<Fabrikant> alleFabrikanten = new HashSet<Fabrikant>();
+   private final HashSet<VliegtuigType> vliegtuigTypen;
    
    public Fabrikant(String naam, String cp) 
    {

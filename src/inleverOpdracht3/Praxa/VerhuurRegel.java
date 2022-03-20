@@ -3,7 +3,7 @@ package inleverOpdracht3.Praxa;
 import java.util.Date;
 
 public class VerhuurRegel extends TransactieRegel {
-    private VerhuurTransactie verhuurTransactie;
+    private final VerhuurTransactie verhuurTransactie;
     private Date eindDatum;
     private final Exemplaar exemplaar;
 

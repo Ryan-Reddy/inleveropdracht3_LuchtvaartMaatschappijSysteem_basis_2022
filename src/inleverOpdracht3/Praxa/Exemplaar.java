@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Exemplaar {
     ArrayList<VerhuurRegel> regels = new ArrayList<>();
-    private String details;
+    private final String details;
     private int serieNr;
     private Boolean status;  // TODO ??? details
 

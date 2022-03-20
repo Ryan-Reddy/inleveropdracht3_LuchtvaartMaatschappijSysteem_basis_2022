@@ -7,8 +7,8 @@ public class VerhuurProduct extends Product {
     private double verhuurPrijs;
     private double borg;
     private static List<VerhuurProduct> alleVerhuurProducten;
-    private String omschrijving;
-    private List<Exemplaar> exemplaren;
+    private final String omschrijving;
+    private final List<Exemplaar> exemplaren;
 
     static {
         VerhuurProduct.alleVerhuurProducten = new ArrayList<>();

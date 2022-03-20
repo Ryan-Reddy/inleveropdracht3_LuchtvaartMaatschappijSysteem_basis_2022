@@ -3,10 +3,10 @@ package main.userInterfaceLaag;
 import javafx.beans.property.SimpleStringProperty;
 
 public class OverzichtLuchthavensDataModel {
-    private SimpleStringProperty luchthavenNm;
-    private SimpleStringProperty code;
-    private SimpleStringProperty werkplaats;
-    private SimpleStringProperty land;
+    private final SimpleStringProperty luchthavenNm;
+    private final SimpleStringProperty code;
+    private final SimpleStringProperty werkplaats;
+    private final SimpleStringProperty land;
 
     public OverzichtLuchthavensDataModel(String luchthavenNaam, String code, String werkplaats, String landNaam) {
         this.luchthavenNm = new SimpleStringProperty(luchthavenNaam);

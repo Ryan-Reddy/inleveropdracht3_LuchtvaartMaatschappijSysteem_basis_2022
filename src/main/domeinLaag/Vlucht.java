@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Vlucht
 {
-   private static HashSet<Vlucht> alleVluchten = new HashSet<Vlucht>();
+   private static final HashSet<Vlucht> alleVluchten = new HashSet<Vlucht>();
    private static int hoogsteVluchtNummer = 1;
    private int vluchtNummer;
    private Vliegtuig vliegtuig;

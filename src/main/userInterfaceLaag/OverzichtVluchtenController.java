@@ -31,7 +31,7 @@ public class OverzichtVluchtenController implements Initializable {
     @FXML
     private Button buttonCancel;
 
-    private LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
+    private final LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
     private ObservableList<OverzichtVluchtenDataModel> dataList;
 
 

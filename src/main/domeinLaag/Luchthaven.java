@@ -7,7 +7,7 @@ public class Luchthaven
    private String code = "";
    private boolean werkPlaats = false;
    private Land land;
-   private static Set<Luchthaven> alleLuchthavens = new HashSet<Luchthaven>();
+   private static final Set<Luchthaven> alleLuchthavens = new HashSet<Luchthaven>();
 
    /**
 	* @return TreeMap met key = naam en value = (link naar) het Luchthaven-object.

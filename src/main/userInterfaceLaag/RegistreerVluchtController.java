@@ -31,7 +31,7 @@ public class RegistreerVluchtController implements Initializable {
     @FXML
     private Button buttonCancel;
 
-    private LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
+    private final LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
     private Vliegtuig vliegtuig;
     private Vlucht nieuweVlucht;
     private TreeMap<String, Vliegtuig> vliegtuigenMap;
@@ -77,13 +77,13 @@ public class RegistreerVluchtController implements Initializable {
 
     public void vertrekpunt() {
         String naam = (String) vertrekPuntComboBox.getValue();
-        Luchthaven vertrekpunt = (Luchthaven) luchthavensMap.get(naam);
+        Luchthaven vertrekpunt = luchthavensMap.get(naam);
         nieuweVlucht.zetVertrekpunt(vertrekpunt);
     }
 
     public void bestemming() {
         String naam = (String) bestemmingComboBox.getValue();
-        Luchthaven bestemming = (Luchthaven)luchthavensMap.get(naam);
+        Luchthaven bestemming = luchthavensMap.get(naam);
         nieuweVlucht.zetBestemming(bestemming);
     }
 

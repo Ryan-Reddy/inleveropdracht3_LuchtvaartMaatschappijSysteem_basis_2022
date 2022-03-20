@@ -47,23 +47,23 @@ public class RegistreerLuchthavenController implements Initializable {
 
 
 /**     Activeer na het maken van het scherm
-        alleLanden = Land.geefAlleLanden();
-        nieuweLuchthaven = new Luchthaven();
+ alleLanden = Land.geefAlleLanden();
+ nieuweLuchthaven = new Luchthaven();
 
-        // Update de UI: Toon de landen in de LandenComboBox
-        // Toon eerst een leeg veld, zodat de gebruiker een waarde moet selecteren, wat de event triggered.
-        String leeg = "";
-        landComboBox.getItems().add(leeg);
-        // Creëer een gesorteerde Set namen en voeg ze toe aan de combo box.
-        Set<String> landNamen = alleLanden.keySet();
-        for (Iterator<String> i = landNamen.iterator(); i.hasNext();) {
-            landComboBox.getItems().add(i.next());
-        }
-        // Voeg event listener toe aan naam- en codeTextField.
-        naamTextField.focusedProperty().addListener((obs, oldText, newText) -> {
-            if(!newText) naam();}); // if (focus lost)
-        codeTextField.focusedProperty().addListener((obs, oldText, newText) -> {
-            if(!newText) code();});
+ // Update de UI: Toon de landen in de LandenComboBox
+ // Toon eerst een leeg veld, zodat de gebruiker een waarde moet selecteren, wat de event triggered.
+ String leeg = "";
+ landComboBox.getItems().add(leeg);
+ // Creëer een gesorteerde Set namen en voeg ze toe aan de combo box.
+ Set<String> landNamen = alleLanden.keySet();
+ for (Iterator<String> i = landNamen.iterator(); i.hasNext();) {
+ landComboBox.getItems().add(i.next());
+ }
+ // Voeg event listener toe aan naam- en codeTextField.
+ naamTextField.focusedProperty().addListener((obs, oldText, newText) -> {
+ if(!newText) naam();}); // if (focus lost)
+ codeTextField.focusedProperty().addListener((obs, oldText, newText) -> {
+ if(!newText) code();});
  */
     }
 
@@ -144,12 +144,13 @@ public class RegistreerLuchthavenController implements Initializable {
         alert.setContentText(tekstMessage);
         alert.showAndWait();
     }
-        private void vulComboBox(Set<String> set, ComboBox comboBox) {
+
+    private void vulComboBox(Set<String> set, ComboBox comboBox) {
         // Toon eerst een leeg veld, zodat de gebruiker een waarde moet selecteren, wat de event triggered.
         String leeg = "";
         comboBox.getItems().add(leeg);
         // Creëer een gesorteerde Set namen en voeg ze toe aan vliegtuigComboBox.
-        for (Iterator<String> i = set.iterator(); i.hasNext();) {
+        for (Iterator<String> i = set.iterator(); i.hasNext(); ) {
             comboBox.getItems().add(i.next());
         }
     }

@@ -34,7 +34,7 @@ public class OverzichtVliegtuigenController implements Initializable {
     @FXML
     private Button buttonCancel;
 
-    private LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
+    private final LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
     private ObservableList<OverzichtVliegtuigenDataModel> dataList;
 
 
@@ -59,7 +59,7 @@ public class OverzichtVliegtuigenController implements Initializable {
         Set<String> vSet = vliegtuigen.keySet();
         for (String vNaam : vSet) {
             OverzichtVliegtuigenDataModel dataModel;
-            Vliegtuig vliegtuig = (Vliegtuig) vliegtuigen.get(vNaam);
+            Vliegtuig vliegtuig = vliegtuigen.get(vNaam);
             VliegtuigType vtt = vliegtuig.geefVliegtuigType();
             String vttCode = vtt.geefCode();
             Fabrikant fb = vtt.geefFabrikant();

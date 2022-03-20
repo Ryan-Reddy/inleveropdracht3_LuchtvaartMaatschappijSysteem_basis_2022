@@ -8,7 +8,7 @@ public class Vliegtuig
    private String naam = "";
    private Calendar datumInGebruik = null;
    private VliegtuigType vtt;
-   private LuchtvaartMaatschappij lvm;
+   private final LuchtvaartMaatschappij lvm;
    
    public Vliegtuig(LuchtvaartMaatschappij lvm) {
 		this.lvm = lvm;

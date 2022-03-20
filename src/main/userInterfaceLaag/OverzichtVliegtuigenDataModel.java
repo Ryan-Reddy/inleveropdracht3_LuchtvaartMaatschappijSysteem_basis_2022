@@ -3,10 +3,10 @@ package main.userInterfaceLaag;
 import javafx.beans.property.SimpleStringProperty;
 
 public class OverzichtVliegtuigenDataModel {
-    private SimpleStringProperty vliegtuigNm;
-    private SimpleStringProperty fabrikantNm;
-    private SimpleStringProperty typeNm;
-    private SimpleStringProperty cap;
+    private final SimpleStringProperty vliegtuigNm;
+    private final SimpleStringProperty fabrikantNm;
+    private final SimpleStringProperty typeNm;
+    private final SimpleStringProperty cap;
 
     public OverzichtVliegtuigenDataModel(String vliegtuigNaam, String fabrikantNaam, String typeNaam, int capaciteit) {
         this.vliegtuigNm = new SimpleStringProperty(vliegtuigNaam);

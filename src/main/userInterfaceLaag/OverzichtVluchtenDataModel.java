@@ -7,14 +7,14 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class OverzichtVluchtenDataModel {
-    private SimpleStringProperty vliegtuigNm;
-    private SimpleStringProperty vertrekpunt;
-    private SimpleStringProperty bestemming;
-    private SimpleStringProperty vertrekTijd;
-    private SimpleStringProperty aankomstTijd;
+    private final SimpleStringProperty vliegtuigNm;
+    private final SimpleStringProperty vertrekpunt;
+    private final SimpleStringProperty bestemming;
+    private final SimpleStringProperty vertrekTijd;
+    private final SimpleStringProperty aankomstTijd;
 
-    private Locale currentLocale = new Locale("nl","NL");
-    private DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, currentLocale);
+    private final Locale currentLocale = new Locale("nl","NL");
+    private final DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, currentLocale);
 
     public OverzichtVluchtenDataModel(String vliegtuigNaam, String vertrekpunt, String bestemming, Calendar vertrekTijd, Calendar aankomstTijd) {
         this.vliegtuigNm = new SimpleStringProperty(vliegtuigNaam);

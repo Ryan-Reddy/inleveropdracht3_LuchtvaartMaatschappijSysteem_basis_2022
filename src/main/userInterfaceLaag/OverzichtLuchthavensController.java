@@ -32,7 +32,7 @@ public class OverzichtLuchthavensController implements Initializable {
     @FXML
     private Button buttonCancel;
 
-    private LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
+    private final LuchtvaartMaatschappij lvm = LuchtvaartMaatschappij.getCurrentLuchtvaartMaatschappij();
     private ObservableList<OverzichtLuchthavensDataModel> dataList;
 
 
@@ -58,7 +58,7 @@ public class OverzichtLuchthavensController implements Initializable {
         for (String lNaam : lSet) {
             OverzichtLuchthavensDataModel dataModel;
             String werkplaats = "";
-            Luchthaven luchthaven = (Luchthaven) luchthavens.get(lNaam);
+            Luchthaven luchthaven = luchthavens.get(lNaam);
             String luchthavenNaam = luchthaven.geefNaam();
             String code = luchthaven.geefCode();
             if (luchthaven.geefWerkplaats()) {

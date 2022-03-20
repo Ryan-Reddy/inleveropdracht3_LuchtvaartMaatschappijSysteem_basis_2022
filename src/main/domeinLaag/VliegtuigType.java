@@ -3,9 +3,9 @@ package main.domeinLaag;
 
 public class VliegtuigType 
 {
-   private Fabrikant fb;
-   private String code;   
-   private int capaciteit;
+   private final Fabrikant fb;
+   private final String code;
+   private final int capaciteit;
    
    public VliegtuigType(Fabrikant fb, String code, int cap) {
 	   	this.fb = fb;
