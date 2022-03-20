@@ -133,9 +133,8 @@ public class VluchtTest {
     }
 
     @Test
-    public void testVertrekMaandInVerleden_False() {
-
-//		TODO
+    public void testVertrekMaandInVerleden_magNiet() {
+        assertThrows(VluchtException.class, () -> vertr.set(todayYear, todayMonth-1, todayDate, todayHour, todayMinute, todaySecond));
     }
 
     @Test
