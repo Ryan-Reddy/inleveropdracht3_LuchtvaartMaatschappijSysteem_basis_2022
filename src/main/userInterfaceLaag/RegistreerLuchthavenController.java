@@ -40,6 +40,10 @@ public class RegistreerLuchthavenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        alleLanden = Land.geefAlleLanden();
+        Set<String> alleLandenSet = alleLanden.keySet();
+        vulComboBox(alleLandenSet, landComboBox);
+        System.out.println(alleLanden);
 
 
 /**     Activeer na het maken van het scherm
@@ -139,5 +143,14 @@ public class RegistreerLuchthavenController implements Initializable {
         alert.setTitle("Waarschuwing!");
         alert.setContentText(tekstMessage);
         alert.showAndWait();
+    }
+        private void vulComboBox(Set<String> set, ComboBox comboBox) {
+        // Toon eerst een leeg veld, zodat de gebruiker een waarde moet selecteren, wat de event triggered.
+        String leeg = "";
+        comboBox.getItems().add(leeg);
+        // Creëer een gesorteerde Set namen en voeg ze toe aan vliegtuigComboBox.
+        for (Iterator<String> i = set.iterator(); i.hasNext();) {
+            comboBox.getItems().add(i.next());
+        }
     }
 }

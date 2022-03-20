@@ -236,7 +236,6 @@ public class VluchtTest {
      * 5)	Een vlucht mag alleen geaccepteerd worden als de volgende gegevens zijn vastgelegd: vliegtuig, vertrekpunt, bestemming, vertrektijd, aankomsttijd.
      * Zo niet: bewaar de vlucht niet (en geef een melding).
      */
-    //    ==============================================================================
 
 
     @Test

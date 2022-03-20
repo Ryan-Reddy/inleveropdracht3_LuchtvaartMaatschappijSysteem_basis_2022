@@ -46,6 +46,8 @@ public class RegistreerVluchtController implements Initializable {
         // Update de UI: Toon de vliegtuigen en luchthavens in de ComboBoxen.
         Set<String> vliegtuigenSet = vliegtuigenMap.keySet();
         vulComboBox(vliegtuigenSet, vliegtuigComboBox);
+
+
         Set<String> luchthavenSet = luchthavensMap.keySet();
         vulComboBox(luchthavenSet, vertrekPuntComboBox);
         vulComboBox(luchthavenSet, bestemmingComboBox);

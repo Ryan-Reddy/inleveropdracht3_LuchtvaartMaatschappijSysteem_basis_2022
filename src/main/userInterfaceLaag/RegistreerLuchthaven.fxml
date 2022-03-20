@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.userInterfaceLaag.RegistreerLuchthavenController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -13,7 +13,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <ComboBox prefWidth="150.0" promptText="kies je land">
+            <ComboBox fx:id="landComboBox" prefWidth="150.0" promptText="kies je land">
                <HBox.margin>
                   <Insets right="40.0" />
                </HBox.margin>
@@ -95,7 +95,7 @@
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button mnemonicParsing="false" prefWidth="100.0" text="Ok" />
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Cancel">
+            <Button fx:id="buttonCancel" mnemonicParsing="false" onAction="#cancel" prefWidth="100.0" text="Cancel">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
